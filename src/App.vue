@@ -47,7 +47,7 @@
     serverPrefetch() {
       // Definindo state do componente a partir
       // de dados vindo do contexto do node
-      this.greenFruits = this.$ssrContext.greenFruits
+      this.greenFruits = this.$ssrContext.state.greenFruits
     }
   }
 </script>
