@@ -2,12 +2,10 @@ const { createBundleRenderer } = require('vue-server-renderer')
 const express = require('express')
 const path = require('path')
 const fs = require('fs')
-
 const resolve = file => path.resolve(__dirname, file)
-
 const app = express()
 
-app.use('/dist', express.static(__dirname  + '/../dist'))
+app.use('/dist', express.static(resolve('../dist')))
 
 const createRenderer = function (serverBundle, options) {
     return createBundleRenderer(serverBundle, options)

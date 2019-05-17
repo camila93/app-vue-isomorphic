@@ -1,6 +1,5 @@
 const { VueLoaderPlugin } = require('vue-loader')
 
-
 module.exports = {
     module: {
         rules: [
