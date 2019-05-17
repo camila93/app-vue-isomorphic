@@ -7,5 +7,5 @@ export function createApp() {
         //h hyperscript = que monta o virtual dom
         render: h => h(App)
     })
-    return {app}
+    return { app }
 }

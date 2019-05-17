@@ -9,26 +9,43 @@ const app = express()
 
 app.use('/dist', express.static(__dirname  + '/../dist'))
 
-const createRenderer = function (ssrBundle, options) {
-    return createBundleRenderer(ssrBundle, options)
+const createRenderer = function (serverBundle, options) {
+    return createBundleRenderer(serverBundle, options)
 }
 
-const templatePath = resolve('./index.html')
-const template = fs.readFileSync(templatePath, 'utf-8')
-const clientManifest = require('../dist/vue-ssr-client-manifest.json')
-const ssrBundle = require('../dist/vue-ssr-server-bundle.json')
+// Template onde será inserido o Server Bundle e link <script> do Client Bundle
+const template = fs.readFileSync(resolve('./index.html'), 'utf-8')
 
-let renderer = createRenderer(ssrBundle, {
+// Manifesto com informações para injetar link <script> do Client Bundle
+const clientManifest = require('../dist/vue-ssr-client-manifest.json')
+
+// Server Bundle
+const serverBundle = require('../dist/vue-ssr-server-bundle.json')
+
+let renderer = createRenderer(serverBundle, {
     template,
     clientManifest
 })
 
-app.get('/app', (req, res) => {
-    renderer.renderToString({}, (error, html) => {
+app.get('*', (req, res) => {
+    // É possível injetar no momento da renderização do servidor,
+    // dados dentro do template.html e
+    // da aplicação vue por meio do objeto context
+    const context = {
+        title: 'Aplicação Vue.js Isomórfica',
+        state: {
+            greenFruits: [
+                'Limão',
+                'Abacate'
+            ]
+        }
+    }
+
+    renderer.renderToString(context, (error, html) => {
         res.send(html)
     })
 })
 
 app.listen(8080, () => {
-    console.log('Server is up to port 8080')
+    console.log('Server is up to port: 8080')
 })
