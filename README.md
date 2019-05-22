@@ -12,6 +12,7 @@ A Server Side and Client Side setup for isomorphic Vue.js applications.
 ## Todo
 - [x] Server Side Render
 - [x] Client Side Render
+- [x] Webpack Bundling
 - [x] Vuex & Server Context avaliable inside components
 - [x] Examples of use
   - [x] Markup rendered on server
