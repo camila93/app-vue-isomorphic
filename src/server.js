@@ -30,13 +30,7 @@ app.get('*', (req, res) => {
     // dados dentro do template.html e
     // da aplicação vue por meio do objeto context
     const context = {
-        title: 'Aplicação Vue.js Isomórfica',
-        state: {
-            greenFruits: [
-                'Limão',
-                'Abacate'
-            ]
-        }
+        title: 'Aplicação Vue.js Isomórfica'
     }
 
     renderer.renderToString(context, (error, html) => {
