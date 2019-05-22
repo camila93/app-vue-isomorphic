@@ -2,7 +2,7 @@
   <div id="app">
     <!-- Lista renderizada no client após o DOM ser montado -->
     <h1>Frutas Vermelhas</h1>
-    <ul v-for="fruta in frutasVermelhas" :key="fruta">
+    <ul v-for="fruta in redFruits" :key="fruta">
       <li>{{ fruta }}</li>
     </ul>
     <!-- Lista renderizada a partir de dados do contexto do node.js -->
@@ -32,14 +32,14 @@
     data() {
       return {
         yellowFruits: [],
-        frutasVermelhas: [],
+        redFruits: [],
         greenFruits: [],
         orangeFruits: [],
         purpleFruits: []
       }
     },
     mounted() {
-      this.frutasVermelhas = ['Morango', 'Maçã', 'Amora']
+      this.redFruits = ['Morango', 'Maçã', 'Amora']
 
       axios.get('http://www.mocky.io/v2/5ce49e223100004fb4742d80')
         .then(response => {

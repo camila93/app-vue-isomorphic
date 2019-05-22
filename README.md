@@ -27,6 +27,8 @@ A Server Side and Client Side setup for isomorphic Vue.js applications.
     - [x] With async call inside component
 - [ ] Error Handling on Server Side Render (RenderToString Method)
 - [ ] Improvement of development experience
+  - [ ] Multi Lojas
+  - [ ] i18n
   - [ ] Source Maps
   - [ ] Webpack Dev Server & Hot reload
   - [ ] JS & CSS Lint
