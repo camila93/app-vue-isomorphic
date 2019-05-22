@@ -9,9 +9,14 @@ export function createStore() {
             greenFruits: [
                 'Limão',
                 'Abacate'
-            ]
+            ],
+            orangeFruits: [],
+            purpleFruits: []
         }),
-        actions: {},
-        mutations: {}
+        mutations: {
+            setOrangeFruits: (state, orangeFruits) => {
+                state.orangeFruits = orangeFruits
+            }
+        }
     })
 }

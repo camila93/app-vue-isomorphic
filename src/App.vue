@@ -5,32 +5,56 @@
     <ul v-for="fruta in frutasVermelhas" :key="fruta">
       <li>{{ fruta }}</li>
     </ul>
-    <hr />
     <!-- Lista renderizada a partir de dados do contexto do node.js -->
     <h1>Frutas Verdes</h1>
     <ul v-for="fruta in greenFruits" :key="fruta">
+      <li>{{ fruta }}</li>
+    </ul>
+    <h1>Frutas Amarelas</h1>
+    <ul v-for="fruta in yellowFruits" :key="fruta">
+      <li>{{ fruta }}</li>
+    </ul>
+    <h1>Frutas Laranjas</h1>
+    <ul v-for="fruta in $store.state.orangeFruits" :key="fruta">
+      <li>{{ fruta }}</li>
+    </ul>
+    <h1>Frutas Roxas</h1>
+    <ul v-for="fruta in purpleFruits" :key="fruta">
       <li>{{ fruta }}</li>
     </ul>
   </div>
 </template>
 
 <script>
+  import axios from 'axios'
+
   export default {
     data() {
       return {
+        yellowFruits: [],
         frutasVermelhas: [],
-        greenFruits: []
+        greenFruits: [],
+        orangeFruits: [],
+        purpleFruits: []
       }
     },
-    // Client render
     mounted() {
-      // Alimentando parte do state do componente
-      // com um state global (Poderia ser algo mais elaborado com Vuex)
       this.frutasVermelhas = ['Morango', 'Maçã', 'Amora']
+
+      axios.get('http://www.mocky.io/v2/5ce49e223100004fb4742d80')
+        .then(response => {
+          this.yellowFruits = response.data.yellowFruits
+        })
     },
-    // Pré-renderiza (Server render) e faz o hydrate no Client Side
     created() {
       this.greenFruits = this.$store.state.greenFruits
+      this.purpleFruits = this.$store.state.purpleFruits
+    },
+    async serverPrefetch() {
+      await axios.get('http://www.mocky.io/v2/5ce4a0db3100000bb6742d85')
+        .then(response => {
+          this.$store.commit('setOrangeFruits', response.data.orangeFruits)
+        })
     }
   }
 </script>

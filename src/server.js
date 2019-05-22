@@ -1,3 +1,4 @@
+const axios = require('axios')
 const { createBundleRenderer } = require('vue-server-renderer')
 const express = require('express')
 const path = require('path')
@@ -25,12 +26,19 @@ let renderer = createRenderer(serverBundle, {
     clientManifest
 })
 
-app.get('*', (req, res) => {
-    // É possível injetar no momento da renderização do servidor,
-    // dados dentro do template.html e
-    // da aplicação vue por meio do objeto context
+app.get('*', async (req, res) => {
+    let purpleFruits = []
+
+    await axios.get('http://www.mocky.io/v2/5ce4a6643100004ab8742d8a')
+        .then(response => {
+            purpleFruits = response.data.purpleFruits
+        })
+
     const context = {
-        title: 'Aplicação Vue.js Isomórfica'
+        title: 'Aplicação Vue.js Isomórfica',
+        state: {
+            purpleFruits
+        }
     }
 
     renderer.renderToString(context, (error, html) => {

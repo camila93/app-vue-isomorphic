@@ -4,7 +4,10 @@ export default context => {
     const { app, store } = createApp();
 
     context.rendered = () => {
-        context.state = store.state
+        context.state = {
+            ...store.state,
+            ...context.state
+        }
     }
 
     return app;
