@@ -10,5 +10,10 @@ export default context => {
         }
     }
 
+    store.replaceState({
+        ...store.state,
+        ...context.state
+    })
+
     return app;
 }

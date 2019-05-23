@@ -19,7 +19,7 @@
       <li>{{ fruta }}</li>
     </ul>
     <h1>Frutas Roxas</h1>
-    <ul v-for="fruta in purpleFruits" :key="fruta">
+    <ul v-for="fruta in $store.state.purpleFruits" :key="fruta">
       <li>{{ fruta }}</li>
     </ul>
   </div>
@@ -48,7 +48,6 @@
     },
     created() {
       this.greenFruits = this.$store.state.greenFruits
-      this.purpleFruits = this.$store.state.purpleFruits
     },
     async serverPrefetch() {
       await axios.get('http://www.mocky.io/v2/5ce4a0db3100000bb6742d85')
