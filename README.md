@@ -25,6 +25,7 @@ A Server Side and Client Side setup for isomorphic Vue.js applications.
     - [x] With local component data/state
     - [x] With vuex state
     - [x] With async call inside component
+- [ ] Method to add meta tags inside templates
 - [ ] Error Handling on Server Side Render (RenderToString Method)
 - [ ] Multi Stores
 - [ ] i18n
